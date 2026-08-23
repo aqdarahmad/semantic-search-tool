@@ -1,263 +1,268 @@
-import { useEffect, useState } from "react";
-import {
-  useNavigate,
-  useParams
-} from "react-router-dom";
-
+import { useParams, useNavigate } from "react-router-dom";
 import { getJob } from "../services/api";
 
 function JobDetails() {
-
   const { jobId } = useParams();
-
   const navigate = useNavigate();
 
-  const [job, setJob] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const data = JSON.parse(
+    localStorage.getItem("matchingResults") || "{}"
+  );
 
+  const job = getJob(jobId);
 
-  useEffect(() => {
+  // ======================================
+  // Find LLM evaluation for this job
+  // ======================================
 
-    async function loadJob() {
-
-      const data = await getJob(jobId);
-
-      setJob(data);
-
-      setLoading(false);
-
-    }
-
-    loadJob();
-
-  }, [jobId]);
-
-
-  if (loading) {
-
-    return (
-      <div className="state-card">
-        Loading job...
-      </div>
+  const evaluation =
+    data.evaluation?.evaluations?.find(
+      (item) =>
+        String(item.job_id) === String(jobId)
     );
 
-  }
-
+  // ======================================
+  // Job not found
+  // ======================================
 
   if (!job) {
-
     return (
-      <div className="state-card">
+      <div className="page">
 
-        <h2>
-          Job not found
-        </h2>
+        <h1>Job Not Found</h1>
+
+        <p>
+          This job is no longer available
+          in the current matching results.
+        </p>
 
         <button
-          onClick={() =>
-            navigate("/jobs")
-          }
+          onClick={() => navigate("/jobs")}
         >
           Back to Jobs
         </button>
 
       </div>
     );
-
   }
 
-
-  const finalScore =
-    Math.round(
-      job.final_score * 100
-    );
-
-  const semanticScore =
-    Math.round(
-      job.semantic_score * 100
-    );
-
-  const skillScore =
-    Math.round(
-      job.skill_score * 100
-    );
-
-
   return (
-
     <div className="page">
+
+      {/* ================================== */}
+      {/* Header */}
+      {/* ================================== */}
 
       <button
         className="back-button"
-        onClick={() =>
-          navigate("/jobs")
-        }
+        onClick={() => navigate("/jobs")}
       >
-        ← Back to jobs
+        ← Back to Jobs
       </button>
 
-
-      <section className="job-detail-hero">
-
-        <div className="company-logo large">
-          {job.company
-            ?.charAt(0)
-            ?.toUpperCase()}
-        </div>
+      <div className="job-details-header">
 
         <div>
 
-          <span className="recommended-tag">
-            AI Recommended
+          <span className="eyebrow">
+            JOB MATCH
           </span>
 
           <h1>
             {job.title}
           </h1>
 
-          <p>
+          <p className="company-name">
             {job.company}
           </p>
 
-          <div className="job-detail-meta">
-            <span>⌖ Remote</span>
-            <span>◷ Full-time</span>
-            <span>◉ Junior</span>
-          </div>
-
         </div>
 
-      </section>
+        <div className="match-score-large">
 
-
-      <div className="job-detail-grid">
-
-        <div>
-
-          <section className="detail-section">
-
-            <h2>
-              Why you're a match
-            </h2>
-
-            <p>
-              Our AI analyzed your profile against
-              this position and found a strong match
-              between your skills and the job
-              requirements.
-            </p>
-
-          </section>
-
-
-          <section className="detail-section">
-
-            <h2>
-              Job Description
-            </h2>
-
-            <p>
-              This position is focused on design
-              verification and requires strong
-              knowledge of digital systems,
-              verification methodologies and
-              SystemVerilog.
-            </p>
-
-          </section>
-
-
-          <section className="detail-section">
-
-            <h2>
-              Required Skills
-            </h2>
-
-            <div className="skills">
-
-              <span>SystemVerilog</span>
-              <span>UVM</span>
-              <span>Verification</span>
-              <span>Digital Design</span>
-              <span>Computer Architecture</span>
-
-            </div>
-
-          </section>
-
-        </div>
-
-
-        <aside className="match-summary">
+          {Math.round(
+            job.final_score * 100
+          )}%
 
           <span>
-            YOUR AI MATCH
+            Match
           </span>
 
-          <div className="big-score">
-            {finalScore}%
-          </div>
-
-          <p>
-            Excellent compatibility
-          </p>
-
-
-          <div className="score-row">
-
-            <span>
-              Semantic Match
-            </span>
-
-            <strong>
-              {semanticScore}%
-            </strong>
-
-          </div>
-
-
-          <div className="score-row">
-
-            <span>
-              Skill Match
-            </span>
-
-            <strong>
-              {skillScore}%
-            </strong>
-
-          </div>
-
-
-          <div className="score-row">
-
-            <span>
-              Skills Matched
-            </span>
-
-            <strong>
-              {job.matched_skills}/
-              {job.total_skills}
-            </strong>
-
-          </div>
-
-
-          <button className="apply-large">
-            Apply Now →
-          </button>
-
-
-          <button className="ask-large">
-            ✦ Ask Match AI
-          </button>
-
-        </aside>
+        </div>
 
       </div>
 
-    </div>
 
+      {/* ================================== */}
+      {/* Matching Scores */}
+      {/* ================================== */}
+
+      <div className="match-stats">
+
+        <div className="stat-card">
+
+          <span>
+            Semantic Match
+          </span>
+
+          <strong>
+            {Math.round(
+              job.semantic_score * 100
+            )}%
+          </strong>
+
+        </div>
+
+        <div className="stat-card">
+
+          <span>
+            Skills Match
+          </span>
+
+          <strong>
+            {Math.round(
+              job.skill_score * 100
+            )}%
+          </strong>
+
+        </div>
+
+        <div className="stat-card">
+
+          <span>
+            Skills Matched
+          </span>
+
+          <strong>
+            {job.matched_skills}/
+            {job.total_skills}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      {/* ================================== */}
+      {/* AI Evaluation */}
+      {/* ================================== */}
+
+      {evaluation && (
+
+        <div className="ai-evaluation">
+
+          <div className="section-header">
+
+            <span className="eyebrow">
+              AI ANALYSIS
+            </span>
+
+            <h2>
+              AI Job Evaluation
+            </h2>
+
+          </div>
+
+
+          {/* Suitability */}
+
+          <div className="suitability">
+
+            <span>
+              Suitability
+            </span>
+
+            <strong>
+              {evaluation.suitability}
+            </strong>
+
+          </div>
+
+
+          {/* Strengths */}
+
+          {evaluation.strengths?.length > 0 && (
+
+            <div className="evaluation-section">
+
+              <h3>
+                ✓ Your Strengths
+              </h3>
+
+              <ul>
+
+                {evaluation.strengths.map(
+                  (strength, index) => (
+
+                    <li key={index}>
+                      {strength}
+                    </li>
+
+                  )
+                )}
+
+              </ul>
+
+            </div>
+
+          )}
+
+
+          {/* Missing Skills */}
+
+          {evaluation.missing_skills?.length > 0 && (
+
+            <div className="evaluation-section">
+
+              <h3>
+                ⚠ Missing Skills
+              </h3>
+
+              <div className="missing-skills">
+
+                {evaluation.missing_skills.map(
+                  (skill, index) => (
+
+                    <span
+                      key={index}
+                      className="skill-tag missing"
+                    >
+                      {skill}
+                    </span>
+
+                  )
+                )}
+
+              </div>
+
+            </div>
+
+          )}
+
+
+          {/* Recommendation */}
+
+          {evaluation.recommendation && (
+
+            <div className="recommendation">
+
+              <h3>
+                AI Recommendation
+              </h3>
+
+              <p>
+                {evaluation.recommendation}
+              </p>
+
+            </div>
+
+          )}
+
+        </div>
+
+      )}
+
+    </div>
   );
 }
 

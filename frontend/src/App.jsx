@@ -8,13 +8,9 @@ import Layout from "./components/Layout";
 
 import Jobs from "./pages/Jobs";
 import JobDetails from "./pages/JobDetails";
-import SavedJobs from "./pages/SavedJobs";
-import AppliedJobs from "./pages/AppliedJobs";
 import Resume from "./pages/Resume";
-import Profile from "./pages/Profile";
 
 function App() {
-
   return (
     <Routes>
 
@@ -41,23 +37,8 @@ function App() {
         />
 
         <Route
-          path="/saved"
-          element={<SavedJobs />}
-        />
-
-        <Route
-          path="/applied"
-          element={<AppliedJobs />}
-        />
-
-        <Route
           path="/resume"
           element={<Resume />}
-        />
-
-        <Route
-          path="/profile"
-          element={<Profile />}
         />
 
       </Route>

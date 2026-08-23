@@ -1,0 +1,182 @@
+/* ================================
+   JOBS EMPTY STATE
+================================ */
+
+.jobs-page {
+  min-height: calc(100vh - 108px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px;
+}
+
+.jobs-empty-state {
+  width: 100%;
+  max-width: 650px;
+
+  text-align: center;
+
+  padding: 70px 50px;
+
+  background: #ffffff;
+
+  border: 1px solid var(--border);
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 20px 60px rgba(17, 24, 39, 0.05);
+}
+
+
+/* Icon */
+
+.jobs-empty-icon {
+  width: 64px;
+  height: 64px;
+
+  margin: 0 auto 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 18px;
+
+  background: var(--primary-light);
+
+  color: var(--primary-dark);
+
+  font-size: 28px;
+
+  box-shadow:
+    0 8px 25px rgba(8, 201, 165, 0.12);
+}
+
+
+/* Eyebrow */
+
+.jobs-eyebrow {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: var(--primary-dark);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+
+/* Heading */
+
+.jobs-empty-state h1 {
+  margin: 0;
+
+  color: var(--black);
+
+  font-size: 36px;
+
+  line-height: 1.15;
+
+  letter-spacing: -1.5px;
+
+  font-weight: 800;
+}
+
+
+/* Description */
+
+.jobs-empty-state p {
+  max-width: 430px;
+
+  margin: 16px auto 30px;
+
+  color: var(--muted);
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+
+/* Upload button */
+
+.upload-resume-btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  padding: 13px 22px;
+
+  border: 0;
+
+  border-radius: 11px;
+
+  background: var(--black);
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.upload-resume-btn span {
+  font-size: 16px;
+
+  line-height: 1;
+}
+
+.upload-resume-btn:hover {
+  background: var(--primary-dark);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(8, 201, 165, 0.2);
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 650px) {
+
+  .jobs-page {
+    padding: 20px;
+  }
+
+  .jobs-empty-state {
+    padding: 50px 25px;
+
+    border-radius: 22px;
+  }
+
+  .jobs-empty-state h1 {
+    font-size: 28px;
+  }
+
+  .jobs-empty-state p {
+    font-size: 12px;
+  }
+
+}

@@ -1,21 +1,39 @@
 const API_URL = "http://127.0.0.1:8000";
 
-export async function getJobs() {
-  const response = await fetch(`${API_URL}/match`);
+export async function analyzeResume(file) {
+  const formData = new FormData();
+
+  formData.append("file", file);
+
+  const response = await fetch(`${API_URL}/match`, {
+    method: "POST",
+    body: formData,
+  });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch jobs");
+    let message = "Failed to analyze resume";
+
+    try {
+      const error = await response.json();
+      message = error.detail || message;
+    } catch {
+      // Ignore invalid error response
+    }
+
+    throw new Error(message);
   }
 
-  const data = await response.json();
-
-  return data.results || [];
+  return await response.json();
 }
 
-export async function getJob(id) {
-  const jobs = await getJobs();
+export async function getJobs() {
+  throw new Error(
+    "Jobs are loaded after resume analysis. Use analyzeResume()."
+  );
+}
 
-  return jobs.find(
-    (job) => String(job.job_id) === String(id)
+export async function getJob() {
+  throw new Error(
+    "Jobs are loaded after resume analysis. Use analyzeResume()."
   );
 }
