@@ -1,0 +1,115 @@
+{
+    "name": "Aqdar Ahmad",
+    "contact": {
+        "email": "aqdarahmad2@gmail.com",
+        "phone": "+972594370953",
+        "location": "Jenin, Palestine"
+    },
+    "skills": [
+        "C",
+        "C++",
+        "System Verilog",
+        "x86 Assembly",
+        "Git",
+        "GitHub",
+        "Postman",
+        "Verisium Debugger",
+        "Linux",
+        "Universal Verification Methodology (UVM)",
+        "React",
+        "PHP",
+        "MERN Stack",
+        "Raspberry Pi",
+        "FastAPI",
+        "ChromaDB",
+        "Google Gemini",
+        "AI",
+        "Computer Vision"
+    ],
+    "experience": [
+        {
+            "title": "Design Verification Engineer - Trainee",
+            "company": "Orion-VLSI-Technology",
+            "location": "Rawabi, Ramallah",
+            "dates": "Aug 2025 – Nov 2025",
+            "description": [
+                "Verified a 32-bit Arithmetic Logic Unit using the Universal Verification Methodology (UVM) in System Verilog.",
+                "Built a fully reusable UVM testbench architecture including driver, monitor, scoreboard, and agent components, reducing future verification setup time by enabling component reuse.",
+                "Applied constrained-random stimulus generation and functional coverage analysis to detect and report design bugs systematically using Verisium Debugger."
+            ]
+        },
+        {
+            "title": "Problem Solving – Trainee",
+            "company": "Gaza Sky Geeks",
+            "location": "Remotely, Palestine",
+            "dates": "Aug 2025 – Oct 2025",
+            "description": [
+                "Solved 50+ algorithmic and data structure challenges in a structured training program.",
+                "Practiced competitive programming techniques applied to arrays, linked lists, recursion, and sorting algorithms, improving solution efficiency."
+            ]
+        }
+    ],
+    "education": [
+        {
+            "institution": "Arab American University",
+            "degree": "Bachelor Computer Systems Engineering",
+            "location": "Jenin, Palestine",
+            "dates": "Oct 2021 – Jul 2026"
+        },
+        {
+            "institution": "Alyamon Girls Secondary School",
+            "degree": "General Secondary Certificate (Tawjihi)",
+            "grade": "93%",
+            "dates": "Jun 2021"
+        }
+    ],
+    "certifications": [
+        {
+            "name": "Frontend Development with React",
+            "date": "Jul 2025"
+        },
+        {
+            "name": "PHP Course",
+            "issuer": "The Hope International Edu",
+            "date": "Feb 2025"
+        },
+        {
+            "name": "Problem Solving",
+            "issuer": "Gaza Sky Geeks",
+            "date": "Nov 2025"
+        },
+        {
+            "name": "MERN Stack",
+            "issuer": "Palestine Tech Hub",
+            "date": "Oct 2025"
+        },
+        {
+            "name": "Job Search Skills",
+            "issuer": "EFE-Global",
+            "date": "Apr 2025"
+        },
+        {
+            "name": "IEEEXtreme 19.0 – Participation Certificate",
+            "date": "Oct 2025"
+        },
+        {
+            "name": "Design Verification",
+            "issuer": "Orion VLSI",
+            "date": "May 2026"
+        }
+    ],
+    "projects": [
+        {
+            "title": "4-Bit ALU – Computer Architecture, Digital Logic, Circuit Design",
+            "description": "Designed and simulated a 4-bit Arithmetic Logic Unit implementing basic arithmetic and logic operations using digital circuit design principles."
+        },
+        {
+            "title": "Fabric and Defect Detection System Using AI",
+            "description": "Developed an AI-based system for fabric type and defect detection, integrating computer vision with Raspberry Pi and a camera module to process fabric images and classify their condition"
+        },
+        {
+            "title": "GitHub Documentation RAG Chatbot",
+            "description": "Built a RAG pipeline for querying FastAPI documentation, implementing document chunking, embeddings, semantic retrieval with ChromaDB, and LLM-based answer generation using Google Gemini"
+        }
+    ]
+}

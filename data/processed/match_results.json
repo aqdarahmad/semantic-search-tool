@@ -1,0 +1,96 @@
+[
+    {
+        "job_id": "job_001",
+        "job_title": "Junior Design Verification Engineer",
+        "company": "TechVLSI",
+        "semantic_score": 56.07,
+        "llm_score": 85,
+        "final_score": 73.43,
+        "decision": "Strong Match",
+        "matching_skills": [
+            "SystemVerilog",
+            "UVM",
+            "Functional Coverage",
+            "Constrained-Random Verification",
+            "Digital Design"
+        ],
+        "missing_skills": [
+            "Verilog"
+        ],
+        "relevant_experience": [],
+        "strengths": [
+            "Direct coursework and training in UVM testbench architecture, constrained-random stimulus, and functional coverage analysis.",
+            "Design Verification certification from Orion VLSI.",
+            "Demonstrated digital logic design through a 4-Bit ALU project."
+        ],
+        "weaknesses": [
+            "Lacks formal professional work experience (experience consists of training programs).",
+            "Verilog is not explicitly listed as a standalone skill."
+        ],
+        "reason": "The candidate's technical skills, training, certifications, and academic background strongly align with Design Verification. SystemVerilog, UVM, Verisium Debugger, and digital design principles are all present in the profile. Per evaluation rules, trainee roles are excluded from professional work experience, but the candidate demonstrates strong domain alignment.",
+        "recommendation": "Strongly recommend for technical screening and interview for the Junior DV Engineer position."
+    },
+    {
+        "job_id": "job_009",
+        "job_title": "RAG AI Engineer",
+        "company": "GenAI Solutions",
+        "semantic_score": 39.63,
+        "llm_score": 52,
+        "final_score": 47.05,
+        "decision": "Potential Match",
+        "matching_skills": [
+            "RAG",
+            "Embeddings",
+            "Vector Databases",
+            "Semantic Search",
+            "LLMs",
+            "APIs"
+        ],
+        "missing_skills": [
+            "Python"
+        ],
+        "relevant_experience": [],
+        "strengths": [
+            "Built a dedicated GitHub Documentation RAG Chatbot project utilizing document chunking, embeddings, ChromaDB, and Google Gemini.",
+            "Explicit skills in ChromaDB, Google Gemini, AI, Computer Vision, and FastAPI."
+        ],
+        "weaknesses": [
+            "Does not explicitly list Python in the skills profile (per evaluation rules, Python experience cannot be assumed from FastAPI).",
+            "Lacks formal professional work experience (project work cannot be counted as work experience)."
+        ],
+        "reason": "The candidate shows strong project-level capabilities with RAG, vector databases (ChromaDB), LLMs (Google Gemini), embeddings, and semantic retrieval. However, Python is a mandatory required skill and is absent from the candidate's explicit skills list. FastAPI is present, but Python cannot be inferred.",
+        "recommendation": "Consider for screening if the candidate can verify core Python proficiency."
+    },
+    {
+        "job_id": "job_002",
+        "job_title": "Junior Software Engineer",
+        "company": "CodeTech",
+        "semantic_score": 40.39,
+        "llm_score": 45,
+        "final_score": 43.16,
+        "decision": "Low Match",
+        "matching_skills": [
+            "C++",
+            "Algorithms",
+            "Data Structures",
+            "Git",
+            "Linux"
+        ],
+        "missing_skills": [
+            "Python",
+            "Object-Oriented Programming"
+        ],
+        "relevant_experience": [],
+        "strengths": [
+            "Strong C++, Git, and Linux skills.",
+            "Extensive problem-solving training with 50+ algorithmic and data structure challenges completed."
+        ],
+        "weaknesses": [
+            "Missing required Python skill.",
+            "Object-Oriented Programming is not explicitly listed as a skill.",
+            "Lacks formal professional work experience."
+        ],
+        "reason": "The candidate matches several core skills (C++, Git, Linux, Algorithms, Data Structures via training), but lacks the required Python programming skill and explicit OOP listing. Per rules, Python cannot be assumed.",
+        "recommendation": "Not recommended unless the candidate can demonstrate Python and Object-Oriented Programming capabilities."
+    }
+]
