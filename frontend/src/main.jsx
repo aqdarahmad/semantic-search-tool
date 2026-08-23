@@ -1,8 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+
 import App from "./App";
-import "./App.css";
+
+import "./styles/global.css";
+import "./styles/jobs.css";
+import "./styles/resume.css";
+import "./styles/topbar.css";
 
 ReactDOM.createRoot(
   document.getElementById("root")

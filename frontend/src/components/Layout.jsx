@@ -1,16 +1,14 @@
 import { Outlet } from "react-router-dom";
-import Sidebar from "./Sidebar";
+import Topbar from "./Topbar";
 
 function Layout() {
   return (
     <div className="app">
 
-      <Sidebar />
+      <Topbar />
 
       <main className="main">
-
         <Outlet />
-
       </main>
 
     </div>
