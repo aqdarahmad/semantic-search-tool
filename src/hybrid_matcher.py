@@ -24,6 +24,13 @@ engine = create_engine(DATABASE_URL)
 
 
 # ==========================================
+# Minimum Match Score
+# ==========================================
+
+MIN_MATCH_SCORE = 0.35
+
+
+# ==========================================
 # Vector → PostgreSQL
 # ==========================================
 
@@ -43,7 +50,6 @@ def calculate_hybrid_matching(
     candidate_embedding,
     candidate_skills
 ):
-    
 
     candidate_vector = vector_to_pg(
         candidate_embedding
@@ -173,6 +179,17 @@ def calculate_hybrid_matching(
             +
             0.30 * skill_score
         )
+
+        # ----------------------------------
+        # Ignore weak matches
+        # ----------------------------------
+
+        if final_score < MIN_MATCH_SCORE:
+            continue
+
+        # ----------------------------------
+        # Add valid result
+        # ----------------------------------
 
         results.append({
 
