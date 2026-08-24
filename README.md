@@ -46,41 +46,48 @@ semantic-search-tool/
 └── README.md
 ```
 1. Clone the repository
+ ```
 git clone https://github.com/aqdarahmad/semantic-search-tool.git
 cd semantic-search-tool
-2. Backend
+```
+3. Backend
+```
 cd backend
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
-
+```
 Create a .env file and add your API key:
 
 GEMINI_API_KEY=your_api_key_here
 
 Run the API:
-
+```
 uvicorn main:app --reload
-
-Backend:
-
+```
+## Backend:
+```
 http://127.0.0.1:8000
+```
 3. Frontend
 
 Open another terminal:
-
+```
 cd frontend
+
 npm install
+
 npm run dev
-
-Frontend:
-
+```
+## Frontend:
+```
 http://localhost:5173
+```
 Usage
-Open the frontend.
-Go to Resume.
-Upload a PDF resume.
-Click Analyze Resume.
-The system extracts skills and returns ranked matching jobs.
+- Open the frontend.
+- Go to Resume.
+- Upload a PDF resume.
+- Click Analyze Resume.
+- The system extracts skills and returns ranked matching jobs.
 
 This project is currently a work in progress.
