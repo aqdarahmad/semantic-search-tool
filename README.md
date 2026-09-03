@@ -92,7 +92,7 @@ Usage
 
 This project is currently a work in progress.
 <img width="1860" height="909" alt="image" src="https://github.com/user-attachments/assets/dc8c1886-cc7f-48c0-af64-4a04c051ede0" />
-<img width="1890" height="904" alt="image" src="https://github.com/user-attachments/assets/01b628fa-70c9-4349-b45a-33d99854527b" />
+
 
 <img width="1883" height="905" alt="image" src="https://github.com/user-attachments/assets/bb258bf3-caed-4468-8d69-b517e8973b12" />
 <img width="1889" height="915" alt="image" src="https://github.com/user-attachments/assets/cba78d3c-265d-47b5-b61a-10a0ff9be08b" />
