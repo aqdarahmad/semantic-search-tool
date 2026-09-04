@@ -1,7 +1,6 @@
 # Semantic Job Matching Tool
 
 An AI-powered job matching system that analyzes a user's resume and recommends relevant job opportunities using semantic similarity, skill matching, and AI evaluation.
-
 ## Features
 
 - Upload PDF resume
