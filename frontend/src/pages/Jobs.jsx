@@ -1,33 +1,32 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+// Results saved by the Resume page (null = no resume analyzed yet)
+function loadStoredResults() {
+  try {
+    const stored =
+      localStorage.getItem("resumeMatchResults");
+
+    return stored ? JSON.parse(stored) : null;
+  } catch (error) {
+    console.error(
+      "Failed to load matching results:",
+      error
+    );
+
+    return null;
+  }
+}
 
 function Jobs() {
   const navigate = useNavigate();
 
-  const [results, setResults] = useState([]);
-  const [candidateSkills, setCandidateSkills] = useState([]);
+  const [stored] = useState(loadStoredResults);
 
-  useEffect(() => {
-    try {
-      const storedResults =
-        localStorage.getItem("resumeMatchResults");
+  const hasAnalyzed = stored !== null;
 
-      if (!storedResults) {
-        return;
-      }
-
-      const data = JSON.parse(storedResults);
-
-      setResults(data.results || []);
-      setCandidateSkills(data.skills || []);
-
-    } catch (error) {
-      console.error(
-        "Failed to load matching results:",
-        error
-      );
-    }
-  }, []);
+  const results = stored?.results || [];
+  const candidateSkills = stored?.skills || [];
 
   function formatScore(score) {
     if (score === undefined || score === null) {
@@ -66,7 +65,9 @@ function Jobs() {
           onClick={() => navigate("/resume")}
         >
           <span>↥</span>
-          Analyze Another Resume
+          {hasAnalyzed
+            ? "Analyze Another Resume"
+            : "Upload Your Resume"}
         </button>
 
       </div>
@@ -116,16 +117,51 @@ function Jobs() {
 
       <div className="jobs-results">
 
-        <div className="jobs-results-header">
+        {hasAnalyzed && (
 
-          <span>
-            {results.length} matching opportunities
-          </span>
+          <div className="jobs-results-header">
 
-        </div>
+            <span>
+              {results.length} matching opportunities
+            </span>
+
+          </div>
+
+        )}
 
 
-        {results.length === 0 ? (
+        {!hasAnalyzed ? (
+
+          <div className="jobs-empty-state">
+
+            <div className="jobs-empty-icon">
+              ↥
+            </div>
+
+            <span className="jobs-eyebrow">
+              GET STARTED
+            </span>
+
+            <h1>
+              Upload your resume to see your matches
+            </h1>
+
+            <p>
+              Upload a PDF resume and the AI will extract
+              your skills and rank the jobs that fit you best.
+            </p>
+
+            <button
+              className="upload-resume-btn"
+              onClick={() => navigate("/resume")}
+            >
+              <span>↥</span>
+              Upload Your Resume
+            </button>
+
+          </div>
+
+        ) : results.length === 0 ? (
 
           <div className="jobs-empty-state">
 
@@ -145,6 +181,14 @@ function Jobs() {
               Try uploading another resume with more
               detailed skills and experience.
             </p>
+
+            <button
+              className="upload-resume-btn"
+              onClick={() => navigate("/resume")}
+            >
+              <span>↥</span>
+              Try Another Resume
+            </button>
 
           </div>
 

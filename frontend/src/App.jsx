@@ -10,6 +10,27 @@ import Jobs from "./pages/Jobs";
 import JobDetails from "./pages/JobDetails";
 import Resume from "./pages/Resume";
 
+// First visit: go straight to the upload page.
+// After a resume was analyzed: show the saved matches.
+function HomeRedirect() {
+  let hasResults;
+
+  try {
+    hasResults = Boolean(
+      localStorage.getItem("resumeMatchResults")
+    );
+  } catch {
+    hasResults = false;
+  }
+
+  return (
+    <Navigate
+      to={hasResults ? "/jobs" : "/resume"}
+      replace
+    />
+  );
+}
+
 function App() {
   return (
     <Routes>
@@ -18,12 +39,7 @@ function App() {
 
         <Route
           path="/"
-          element={
-            <Navigate
-              to="/jobs"
-              replace
-            />
-          }
+          element={<HomeRedirect />}
         />
 
         <Route

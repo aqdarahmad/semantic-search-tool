@@ -28,7 +28,8 @@ export async function analyzeResume(file) {
     throw new Error(
       error.name === "AbortError"
         ? "The server took too long to answer. Please try again."
-        : "Could not reach the server. Please try again."
+        : "Could not reach the server. Please try again.",
+      { cause: error }
     );
   } finally {
     clearTimeout(timer);

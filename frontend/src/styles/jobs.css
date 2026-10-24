@@ -251,6 +251,10 @@
   line-height: 1.7;
 }
 
+.jobs-empty-state .upload-resume-btn {
+  margin-top: 26px;
+}
+
 /* Responsive */
 
 @media (max-width: 1000px) {
