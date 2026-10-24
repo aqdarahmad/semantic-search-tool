@@ -1,4 +1,10 @@
-const API_URL = "http://127.0.0.1:8000";
+// Local development: the backend runs on port 8000.
+// Production (Docker/Render): the backend serves the frontend,
+// so requests go to the same address ("").
+// Set VITE_API_URL to use a different backend.
+const API_URL =
+  import.meta.env.VITE_API_URL ??
+  (import.meta.env.DEV ? "http://127.0.0.1:8000" : "");
 
 export async function analyzeResume(file) {
   const formData = new FormData();

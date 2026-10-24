@@ -1,0 +1,20 @@
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+.pytest_cache/
+
+frontend/node_modules/
+frontend/dist/
+
+# Personal files that the server does not need
+data/cvs/
+data/processed/match_results.json
+
+*.md

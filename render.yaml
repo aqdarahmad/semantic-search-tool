@@ -1,0 +1,15 @@
+# Render Blueprint: New + -> Blueprint -> choose this repository.
+# (You can also create a Web Service by hand with Runtime = Docker.)
+
+services:
+  - type: web
+    name: semantic-search-tool
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      # PostgreSQL connection string (Neon recommended, it supports pgvector)
+      - key: DATABASE_URL
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false

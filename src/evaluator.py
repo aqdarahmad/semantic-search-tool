@@ -111,7 +111,10 @@ Use exactly this structure:
     # --------------------------------------
 
     response = client.models.generate_content(
-        model="gemini-3.6-flash",
+        model=os.getenv(
+            "GEMINI_MODEL",
+            "gemini-3.6-flash"
+        ),
         contents=prompt
     )
 

@@ -4,7 +4,6 @@ from pathlib import Path
 
 import numpy as np
 from dotenv import load_dotenv
-from sentence_transformers import SentenceTransformer
 from sqlalchemy import create_engine, text
 
 
@@ -47,17 +46,83 @@ if not DATABASE_URL:
 # Database
 # ==========================================
 
+# pool_pre_ping / pool_recycle: hosted databases (Neon)
+# close idle connections, so test them before using them
 engine = create_engine(
-    DATABASE_URL
+    DATABASE_URL,
+    pool_pre_ping=True,
+    pool_recycle=300
 )
 
 
 # ==========================================
 # Embedding Model
 # ==========================================
+# all-MiniLM-L6-v2 running on ONNX Runtime (via fastembed).
+# Same model as before, but without PyTorch, so it fits
+# in the 512 MB of RAM of free hosting plans.
 
-model = SentenceTransformer(
-    "all-MiniLM-L6-v2"
+EMBEDDING_MODEL_NAME = (
+    "sentence-transformers/all-MiniLM-L6-v2"
+)
+
+
+class OnnxEmbeddingModel:
+
+    """Small wrapper with the same encode() call used before."""
+
+    def __init__(self, model_name):
+
+        self.model_name = model_name
+
+        self._model = None
+
+    def _load(self):
+
+        if self._model is None:
+
+            from fastembed import TextEmbedding
+
+            self._model = TextEmbedding(
+                model_name=self.model_name
+            )
+
+        return self._model
+
+    def encode(
+        self,
+        texts,
+        normalize_embeddings=True
+    ):
+
+        single = isinstance(texts, str)
+
+        batch = [texts] if single else list(texts)
+
+        vectors = np.array(
+            list(self._load().embed(batch)),
+            dtype=np.float32
+        )
+
+        if normalize_embeddings:
+
+            norms = np.linalg.norm(
+                vectors,
+                axis=1,
+                keepdims=True
+            )
+
+            vectors = vectors / np.clip(
+                norms,
+                1e-12,
+                None
+            )
+
+        return vectors[0] if single else vectors
+
+
+model = OnnxEmbeddingModel(
+    EMBEDDING_MODEL_NAME
 )
 
 

@@ -1,15 +1,25 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { getJob } from "../services/api";
+
+function loadResults() {
+  try {
+    return JSON.parse(
+      localStorage.getItem("resumeMatchResults") || "{}"
+    );
+  } catch {
+    return {};
+  }
+}
 
 function JobDetails() {
   const { jobId } = useParams();
   const navigate = useNavigate();
 
-  const data = JSON.parse(
-    localStorage.getItem("matchingResults") || "{}"
-  );
+  // Same key that the Resume page saves the results in
+  const data = loadResults();
 
-  const job = getJob(jobId);
+  const job = data.results?.find(
+    (item) => String(item.job_id) === String(jobId)
+  );
 
   // ======================================
   // Find LLM evaluation for this job
