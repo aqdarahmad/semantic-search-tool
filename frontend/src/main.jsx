@@ -9,6 +9,14 @@ import "./styles/jobs.css";
 import "./styles/resume.css";
 import "./styles/topbar.css";
 
+// Start fresh on every page load / refresh: results from a previous
+// analysis are not kept (they stay available while moving between pages).
+try {
+  localStorage.removeItem("resumeMatchResults");
+} catch {
+  // Storage can be blocked (private mode), nothing to clear then
+}
+
 ReactDOM.createRoot(
   document.getElementById("root")
 ).render(
