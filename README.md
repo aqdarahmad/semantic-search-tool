@@ -2,6 +2,8 @@
 
 An AI-powered job matching system that analyzes a user's resume and recommends relevant job opportunities using semantic similarity, skill matching, and AI evaluation.
 
+**Live demo:** https://semantic-search-tool.onrender.com (free tier, the first load can take about a minute)
+
 ## Features
 
 - Upload PDF resume
