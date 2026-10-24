@@ -239,6 +239,16 @@ def health(request: Request):
 
 def run_match(contents: bytes, filename: str):
 
+    started = time.perf_counter()
+
+    def log_step(name):
+
+        logger.info(
+            "match: %s done (%.1fs)",
+            name,
+            time.perf_counter() - started
+        )
+
     # ======================================
     # Extract Text
     # ======================================
@@ -264,6 +274,8 @@ def run_match(contents: bytes, filename: str):
             detail="Could not extract text from CV"
         )
 
+    log_step("read PDF")
+
     # ======================================
     # Extract Skills
     # ======================================
@@ -282,6 +294,8 @@ def run_match(contents: bytes, filename: str):
             status_code=500,
             detail=f"Could not extract skills: {str(e)}"
         )
+
+    log_step("extract skills")
 
     # ======================================
     # Generate CV Embedding
@@ -305,6 +319,8 @@ def run_match(contents: bytes, filename: str):
             )
         )
 
+    log_step("embedding")
+
     # ======================================
     # Hybrid Matching
     # ======================================
@@ -327,6 +343,8 @@ def run_match(contents: bytes, filename: str):
                 f"{str(e)}"
             )
         )
+
+    log_step("matching")
 
     # ======================================
     # LLM Evaluation
@@ -357,6 +375,8 @@ def run_match(contents: bytes, filename: str):
                 "AI evaluation is not available "
                 "right now."
             )
+
+    log_step("Gemini evaluation")
 
     return {
         "filename": filename,

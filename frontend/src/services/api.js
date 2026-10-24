@@ -11,10 +11,28 @@ export async function analyzeResume(file) {
 
   formData.append("file", file);
 
-  const response = await fetch(`${API_URL}/match`, {
-    method: "POST",
-    body: formData,
-  });
+  // The free server can take about a minute to wake up,
+  // so wait up to 3 minutes before giving up.
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 180000);
+
+  let response;
+
+  try {
+    response = await fetch(`${API_URL}/match`, {
+      method: "POST",
+      body: formData,
+      signal: controller.signal,
+    });
+  } catch (error) {
+    throw new Error(
+      error.name === "AbortError"
+        ? "The server took too long to answer. Please try again."
+        : "Could not reach the server. Please try again."
+    );
+  } finally {
+    clearTimeout(timer);
+  }
 
   if (!response.ok) {
     let message = "Failed to analyze resume";

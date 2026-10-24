@@ -3,6 +3,7 @@ import json
 
 from dotenv import load_dotenv
 from google import genai
+from google.genai import types
 
 
 # ==========================================
@@ -23,8 +24,17 @@ if not GEMINI_API_KEY:
 # Gemini Client
 # ==========================================
 
+# Without a timeout, a slow Gemini call would keep the
+# request (and the user's spinner) waiting forever.
+GEMINI_TIMEOUT_SECONDS = int(
+    os.getenv("GEMINI_TIMEOUT_SECONDS", "40")
+)
+
 client = genai.Client(
-    api_key=GEMINI_API_KEY
+    api_key=GEMINI_API_KEY,
+    http_options=types.HttpOptions(
+        timeout=GEMINI_TIMEOUT_SECONDS * 1000
+    )
 )
 
 
